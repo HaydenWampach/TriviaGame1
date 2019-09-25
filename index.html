@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" type="text.css" href="assets/css/style.css">
-    <script type="text/javasctipt" src="assets/javascript/app.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-</head>
-<body>
-    <div class="container1">
+<html>
+    <head>
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script type='text/javascript' src='assets/javascript/app.js'></script>
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+       
+    </head>
+    <body>
+        <img class='logo' src="assets/images/us-history-i_100743_large.jpg" alt="90s">
+        <div class='container1'>
+            <br>  
+            <div id='instructionContainer'>Instructions: You will have 60 seconds to answer as many questions as possible. At the end of the 60 seconds, your total score will be tallied up. Hit 'Start' below to begin playing!</div>
+            <br>
+            <div class='row1'>
+                <h1>U.S. History Trivia!</h1>  
+            </div>
+            <div class='row2'>
+                <br><br>
+                <div id='timeRemaining'></div>
+            </div>
+            <br><br>
+            <!-- start button -->
+            <div id='startContainer'>Start Playing</div>
+            <!-- questions -->
+            <div id='gameOver'>
+                <h2 id='correctAnswersTotal'></h2>
+                <h2 id='incorrectAnswersTotal'></h2>
+                <div class='playAgainButton'>Play Again?</div>
+            </div>
+            <form id="quiz" class="quiz" name="quiz">
+                <div id='questions'>
+                </form>
+            </div>
+            <br>
+            <div id='submitButton'>Submit</div>
+            <br><br><br>
         <br>
-        <div id="instructionContainer">Instructions: You will have 45 seconds to answer as man questions as possible. Once the time is up your score will be posted. Click Start to begin and good luck! </div>
-        <br>
-        <div class="row1">
-            <h1>U.S. History!</h1>
-            <h2>Lets see how much you know!</h2>
-        <br>
-        </div>
-        <div class="row2">
-         <div id="instructionContainer">Instructions: You will have 45 seconds to answer as man questions as possible. Once the time is up your score will be posted. Click Start to begin and good luck!</div>
-        </div>
-        <br>
-        <div class="row3">
-            <div id="timeRemaining"></div>
-        </div>
-        <div id="startContainer">Start Playing</div>
-        <div id="gameOver">
-            <h2 id="correctAnswers"></h2>
-            <h2 id="wrongAnswers"></h2>
-            <div class="playAgainButton">Play Again?</div>
-        </div>
-        <form id="quiz" class="quiz" name="quiz">
-            <div id="questions">
-        </form>
-        </div>
-        <br>
-        <div id="submitButton">Submit!</div>
-        <br>
-    </div>
-</body>
+        </div>  
+    </body>
 </html>

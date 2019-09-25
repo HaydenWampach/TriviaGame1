@@ -1,0 +1,139 @@
+.logo {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 150%;
+    z-index: -3;
+    opacity: 0.5;
+}
+.container1 {
+    margin: auto;
+    width: 960px;
+    text-align: center;
+    font-family: 'Abril Fatface', serif;
+}
+#startContainer {
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 120px;
+    font-size: 45px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    position: absolute;
+    width: 960px;
+    height: 50px;
+    color: black;
+    text-shadow: none;
+    border-top: 0px;
+    border: 1px solid #44aa44;
+    margin-top: 120px;
+}
+#gameOver {
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 20px;
+    border: 1px dotted #44aa44;
+}
+#instructionContainer {
+    background-color: white;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    font-size: 20px;
+    text-align: center;
+    margin: auto;
+    margin-top: 15%;
+    position: absolute;
+    width: 960px;
+    height: 100px;
+    color: black;
+    border: 1px dotted #44aa44;
+}
+.timesUp {
+    border: none;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    margin-top: 13%;
+    position: absolute;
+    width: 960px;
+    height: 50px;
+    color: #19472C;
+    border: 1px solid #44aa44;
+}
+#startContainer:hover {
+    background-color: #ddd;
+    color: black;
+    font-size: 50px;
+}
+#startContainer:active {
+    background-color: red;
+    color: black;
+    font-size: 50px;
+}
+h1 {
+    font-size: 30px;
+    color: black;
+}
+h3 {
+    display: flexbox;
+    color: #44aa44;
+}
+.row1 {
+    border: 1px dotted #44aa44;
+    padding: 20px;
+    color: #19472C;
+    background-color: white;
+}
+.questions {
+    height: 120px;
+    padding: 20px;
+    font-family: 'Abril Fatface', serif;
+    line-break: 10px;
+}
+.option {
+    margin-left: 8px;
+    line-height: 30px;
+    margin-right: 8px;
+}
+#timer {
+    font-size: 50px;
+    color: #19472C;
+}
+.questions:nth-child(odd) {
+    border: 1px dotted #44aa44;
+    background-color: white;
+}
+#submitButton {
+    line-height: 20px;
+    padding: 20px;
+    border: 1px solid #44aa44;
+    background-color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+#submitButton:hover {
+    font-size: 30px;
+    background-color: #ddd;
+    cursor: pointer;
+}
+#submitButton:active {
+    background-color: green;
+    color: black;
+    cursor: pointer;
+}
+.playAgainButton {
+    font-size: 25px;
+    cursor: pointer;
+}
+.playAgainButton:hover {
+    transform:scale(1.3,1.3);
+    -webkit-transform:scale(1.3,1.3);
+    -moz-transform:scale(1.3,1.3);
+}

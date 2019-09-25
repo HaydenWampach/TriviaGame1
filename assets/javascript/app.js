@@ -1,100 +1,115 @@
 $(document).ready(function(){
+    //setting data variables and time to countdown
     var gameData = {
         intervalId: null,
-        timeLeft: 45,
+        timeLeft: 60,
         correctAnswers: 0,
         incorrectAnswers: 0,
         userAnswers: []
     }
-
-    var questionsObject= [
+    //question object, displays the question, choices for each, and the answer by index of the array
+    var questionsObj = [
         {
-            question: "Who was the 2nd President of the United States?",
-            options: ["Alexander Hamilton", "John Adams", "Thomas Jefferson", "James Madison"],
-            answer: "John Adams"
+            question: 'In what city was the Decleration of Independence signed?',
+            choices: ['Boston', 'New York', 'Philadelphia', 'Richmond'],
+            answer: 'Philadelphia'
         },
         {
-            question: "What city was the Declaration of Indepence and Constitution signed?",
-            options: ["Boston", "New York", "Richmond", "Philadelphia"],
-            answer: "Philadelphia"
+            question: 'What year did the U.S. enter WWII?',
+            choices: ['1939', '1941', '1943', '1945'],
+            answer: '1941'
+        }, 
+        {
+            question: 'What year did Washington become a state"?',
+            choices: ['1879', '1889', '1899', '1909'],
+            answer: '1889'
         },
         {
-            question: "What year did the U.S. Civil War begin?",
-            options: ["1854", "1816", "1845", "1861"],
-            answer: "1861"
-        },
+            question: 'Who was the 2nd president of the United States?',
+            choices: ['Alexander Hamilton', 'John Adams', 'Thomas Jefferson', 'John Hancock'],
+            answer: 'John Adams'
+        }, 
         {
-            question: "When did Washington become a state?",
-            options: ["1889", "1884", "1891", "1879"],
-            answer: "1889"
-        },
+            question: 'What was the first capital of the United States?',
+            choices: ['New York', 'Washington D.C.', 'Boston', 'Philadelphia'],
+            answer: 'New York'
+        }, 
         {
-            question: "In what year did the United States enter WWII?",
-            options: ["1941", "1939", "1944", "1940"],
-            answer: "1941"
-        },
+            question: 'What year did the American Civil War begin"?',
+            choices: ['1876', '1856', '1893', '1861'],
+            answer: '1861'
+        }, 
     ];
-    
-    $("#questions").hide();
-    $("gameOver").hide();
-    $("submitButton").hide();
+
+    $('#questions').hide();
+    $('#gameOver').hide();
+    $('#submitButton').hide();
 
     function populateUserAnswers(){
-        for(var i = 0; i < questionsObject.length; i++){
+        for(var i = 0; i< questionsObj.length; i++){
             gameData.userAnswers.push(null)
         }
     }
 
     populateUserAnswers();
-    //check if answer is right or wrong
-    function evaluateUserAnswers(){
-        for(var i = 0; i < gameData.userAnswers.length; i++){
-            if(gameData.UserAnswers[i] === questionObject[i].answer){
+
+    // check if user answers are right or wrong
+    function evaluateUserAnswers(){ 
+        for(var i = 0; i< gameData.userAnswers.length; i++){
+            if(gameData.userAnswers[i] === questionsObj[i].answer){
                 gameData.correctAnswers++
-            }else{
-                gameData.incorrectAnswers++
+            }else {
+                gameData.incorrectAnswers++ 
             }
         }
     }
-    //game questions and options
-    function createQuestions(){
-        for(var i = 0; i < questionsObject.length; i++){
-            var wrap = $("<div>").addClass("questions q-wrap").attr("id", "question-"+i);
-            var question = $("<p>").addClass("q-text").texte(questionObject[i].question);
-            var optionWrap = $("<div>").addClass("c-wrap");
-            for(var j = 0; j < questionsObject[i].answer.length; j++){
-                var choices = questionsObject[i].answers;
-                var radioOption = '<input type="radio" data-index="'+i+' "class="option" id="o-'+j+'" name="question'+i+'" value="'+option[j]+'">'+choices[j];
+
+    // create game questions and options
+    function createQuestionsHtml(){
+        for(var i = 0; i < questionsObj.length;i++){
+            var wrap = $('<div>').addClass('questions q-wrap').attr('id', 'question-'+i);
+            var question = $('<p>').addClass('q-text').text(questionsObj[i].question);
+            var optionWrap = $('<div>').addClass('o-wrap');
+            for(var j = 0; j < questionsObj[i].choices.length; j++){
+                var options = questionsObj[i].choices;
+                var radioOption = '<input type="radio" data-index="'+i+' "class="option" id="o-'+j+'" name="question'+i+'" value="'+options[j]+'">'+options[j];
                 $(optionWrap).append(radioOption);
             }
+            
             $(wrap).append(question, optionWrap);
             displayQuestionsHtml(wrap);
         }
     }
 
+    // displaying game questions on the page
     function displayQuestionsHtml(wrap){
-        $("#questions").append(wrap)
+        $('#questions').append(wrap)
     }
 
-    $("#questions").on("change", ".option", function(event){
-        var selectedOptionName = $(this).attr("name");
-        var userAnswer = $("input[name='selctedOptionName+']:checked").val();
+    // update users answer for each question on change
+    $('#questions').on('change', '.option', function(event){
+        var selectedOptionName = $(this).attr('name');
+        var userAnswer = $('input[name='+selectedOptionName+']:checked').val();
         var index = $(this).data('index');
-        gameData.userAnswers.splice(index, 1, userAnswer);
+        gameData.userAnswers.splice(index,1, userAnswer);
     });
 
     function runGame(){
-        $("#startContainer").hide();
-        $("#instructionsContainer").hide();
-        createQeuestionsHtml();
-        $("#questions").show();
-        $("#submitButton").show();
+        //display the questions after the game has started 
+        $('#startContainer').hide();
+        $('#instructionContainer').hide();
+        createQuestionsHtml();
+        $('#questions').show();
+        $('#submitButton').show();
 
+        //start timer and allow button clicks on bubbles 
         startTimer();
         decrement();
     }
 
-    $("#startContainer").on("click", function() {
+
+    $('#startContainer').on('click', function() {
+        //hides the start button and instruction panel, shows questions, starts countdown
         runGame();
     });
 
@@ -104,39 +119,45 @@ $(document).ready(function(){
     }
 
     function decrement() {
+        //  Decrease number by one.
         gameData.timeLeft--;
-        $("#timeRemaining").html("<h2>" + gameData.timeLeft + "Seconds Remaining" + "</h2>");
-        if(gameData.timeLeft === 0){
+            //  Show the number in the #show-number tag.
+        $('#timeRemaining').html('<h2>' + gameData.timeLeft + ' Seconds Remaining' + '</h2>');
+        //  Once number hits zero...
+        if (gameData.timeLeft === 0) {
+            //Stop the game and Alert the user that they lost
             stopGame();
         }
     }
-    $("#submitButton").on("click", fuction() {
+    $('#submitButton').on('click', function() {
         stopGame();
+        //scroll to the top of the page so the user doesn't have to
         $(window).scrollTop(0);
     })
 
     function stopGame() {
+        //if time hits zero, Stop the game and Alert the user that they lost
         clearInterval(gameData.intervalId);
-        $("#timeRemaining").html("<h2>Game over!</h2>");
-        $("#questions").empty().hide();
-
-        //display game over and hide submit button
-        $("#gameOver").show();
-        $("#submitButton").hide();
+        $('#timeRemaining').html('<h2>The game has ended!</h2>');
+        $('#questions').empty().hide();
+        //display game over container and hide the submit button 
+        $('#gameOver').show();
+        $('#submitButton').hide();
 
         evaluateUserAnswers();
 
-        $("#correctAnswersTotal").text("You answered " + gameData.correctAnswers + "correctly!");
-        $("#incorrectAnswersTotal").text("You answered " + gameData.incorrectAnswers + "incorrectly.");        
+        $('#correctAnswersTotal').text('You answered ' + gameData.correctAnswers + ' correctly.');
+        $('#incorrectAnswersTotal').text('You answered ' + gameData.incorrectAnswers + ' incorrectly.');
     }
-
-    $("playAgainButton").on("click", function() {
-        gameData.timeLeft = 45;
+     //asks user to play again, restarts game if clicked
+    $('.playAgainButton').on('click', function() {
+        //restart variables 
+        gameData.timeLeft = 60;
         gameData.correctAnswers = 0;
         gameData.incorrectAnswers = 0;
-
-        $("#gameOver").hide();
-        $("#instructionContainer").show();
+        //toggle songs, toggle viewport
+        $('#gameOver').hide();
+        $('#instructionContainer').show();
         runGame();
     })
 });
